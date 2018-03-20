@@ -1,4 +1,4 @@
 .idea/
 target/
-*.pptx
+hide/
 *.iml
