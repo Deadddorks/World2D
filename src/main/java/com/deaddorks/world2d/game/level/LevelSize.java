@@ -20,4 +20,9 @@ public class LevelSize
 		return height;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "{LevelString} (width: ["+ width +"], height: ["+ height +"])";
+	}
 }

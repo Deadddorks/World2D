@@ -1,7 +1,9 @@
 package com.deaddorks.world2d.game.texture;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class TextureMap
 {
@@ -59,6 +61,18 @@ public class TextureMap
 				points.get(p3),
 				points.get(p4)
 		));
+	}
+	
+	public Map<String, TextureSection> generateSectionMap()
+	{
+		Map<String, TextureSection> map = new HashMap<>();
+		
+		for (TextureSection s : sections)
+		{
+			map.put(s.getName(), s);
+		}
+		
+		return map;
 	}
 	
 	public void printRowStarts()

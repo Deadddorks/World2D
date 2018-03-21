@@ -7,19 +7,35 @@ import com.deaddorks.world2d.game.texture.TextureMap;
 public class World
 {
 	
+	private int worldOffX, worldOffY;
+	
 	private Level level;
 	private LevelLoader loader;
 	private TextureMap textureMap;
 	
-	public World()
+	public World(final int windowWidth, final int windowHeight)
 	{
-		loader = new LevelLoader("levels/", ".tdl");
-		
 		textureMap = new TextureMap(16, 8);
-		
 		initTextures();
 		
-		level = loader.load("level-1");
+		loader = new LevelLoader(textureMap.generateSectionMap(),
+				20, windowWidth, windowHeight,
+				"levels/", ".tdl");
+		
+		loadLevel("level-1");
+	}
+	
+	public void loadLevel(final String levelName)
+	{
+		level = loader.load(levelName);
+		// Error handle
+		worldOffX = 0;
+		worldOffY = 0;
+	}
+	
+	public void draw()
+	{
+	
 	}
 	
 	private void initTextures()
@@ -148,7 +164,7 @@ public class World
 		
 		// --- Print ---
 		System.out.println(textureMap.toString());
-		textureMap.printRowStarts();
+		// textureMap.printRowStarts();
 	}
 	
 }

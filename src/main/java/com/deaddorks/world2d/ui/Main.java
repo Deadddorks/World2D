@@ -1,5 +1,6 @@
 package com.deaddorks.world2d.ui;
 
+import com.deaddorks.world2d.game.shader.Shader;
 import com.deaddorks.world2d.game.world.World;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -25,7 +26,7 @@ public class Main
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-		// glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
+		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GLFW_TRUE);
 		
 		glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
@@ -45,8 +46,12 @@ public class Main
 		glfwSetWindowIcon(window, null);
 		
 		System.out.println("<Version>: " + glGetString(GL_VERSION));
+		System.out.println("primary monitor -> width: ["+ vidMode.width() +"], height: ["+ vidMode.height() +"]");
 		
-		World world = new World();
+		Shader shader = Shader.parseShaderFromFile("shaders/world.shader");
+		System.out.println(shader.toString());
+		
+		World world = new World(WIDTH, HEIGHT);
 		
 		// Show window
 		glfwShowWindow(window);
@@ -55,6 +60,7 @@ public class Main
 		{
 			glClear(GL_COLOR_BUFFER_BIT);
 			
+			world.draw();
 			
 			glfwSwapBuffers(window);
 			
