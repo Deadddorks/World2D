@@ -6,7 +6,6 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
 
 import static org.lwjgl.glfw.GLFW.*;
-import static org.lwjgl.glfw.GLFW.glfwTerminate;
 import static org.lwjgl.opengl.GL11.*;
 
 public class Main
@@ -17,12 +16,10 @@ public class Main
 	
 	public static void main(String[] args)
 	{
-		
 		if (!glfwInit())
 		{
 			throw new IllegalStateException("glfwInit()");
 		}
-		
 		glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
@@ -49,7 +46,9 @@ public class Main
 		System.out.println("primary monitor -> width: ["+ vidMode.width() +"], height: ["+ vidMode.height() +"]");
 		
 		Shader shader = Shader.parseShaderFromFile("shaders/world.shader");
-		System.out.println(shader.toString());
+		// System.out.println(shader.toString());
+		shader.compile();
+		shader.use();
 		
 		World world = new World(WIDTH, HEIGHT);
 		

@@ -14,7 +14,7 @@ public class BlockInfo
 	public BlockInfo(final int x, final int y, final TextureSection section)
 	{
 		this.type = Type.FULL;
-	
+		
 		this.x = x;
 		this.y = y;
 		this.center = section;
